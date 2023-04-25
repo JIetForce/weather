@@ -1,0 +1,74 @@
+.weather {
+
+  .weather-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 800px;
+    margin: 0 auto;
+    padding-top: 80px;
+
+    .weather-date-tabs {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      width: 100%;
+      padding: 0;
+
+      li {
+        display: flex;
+        flex-direction: column;
+        list-style: none;
+        cursor: pointer;
+        border: 1px solid #ffffff;
+        padding: 8px;
+
+        .weather-date-tabs__item-details {
+          display: flex;
+          justify-content: space-between;
+          min-width: 100px;
+          padding-top: 12px;
+
+          .weather-date-tabs__item-details-temp {
+            display: flex;
+            flex-direction: column;
+
+            .weather-date-tabs__item-details-temp-label {
+              font-size: 12px;
+            }
+          }
+        }
+      }
+    }
+
+    .weather-list {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+
+      .weather-list-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 300px;
+        border: 1px solid #ffffff;
+        gap: 20px;
+
+        .weather-list-item__details {
+          display: flex;
+          width: 100%;
+          justify-content: space-evenly;
+          padding: 0;
+          margin: 0;
+        }
+      }
+    }
+  }
+}
