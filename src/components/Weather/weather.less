@@ -1,5 +1,4 @@
 .weather {
-
   .weather-wrapper {
     display: flex;
     flex-direction: column;
@@ -8,28 +7,47 @@
     align-items: center;
     width: 800px;
     margin: 0 auto;
-    padding-top: 80px;
+    padding-top: 40px;
 
     .weather-date-tabs {
       display: flex;
-      justify-content: space-around;
-      align-items: center;
+      justify-content: space-between;
+      align-items: flex-start;
       width: 100%;
       padding: 0;
+      margin: 0;
+      margin-top: 40px;
 
-      li {
+      .weather-date-tabs__item {
         display: flex;
         flex-direction: column;
+        align-items: center;
         list-style: none;
         cursor: pointer;
-        border: 1px solid #ffffff;
+        border: 1px solid #cccccc;
+        border-radius: 8px;
         padding: 8px;
+
+        .weather-date-tabs__item-date {
+          font-size: 14px;
+          margin: 0;
+          font-style: italic;
+        }
+        .weather-date-tabs__item-date:nth-child(2) {
+          font-size: 30px;
+          font-weight: 500;
+          font-style: initial;
+        }
+
+        .weather-date-tabs__item-icon {
+          width: 45px;
+          height: 45px;
+        }
 
         .weather-date-tabs__item-details {
           display: flex;
-          justify-content: space-between;
+          justify-content: space-around;
           min-width: 100px;
-          padding-top: 12px;
 
           .weather-date-tabs__item-details-temp {
             display: flex;
@@ -37,8 +55,19 @@
 
             .weather-date-tabs__item-details-temp-label {
               font-size: 12px;
+              margin: 0;
+              font-style: italic;
             }
           }
+        }
+
+        &.active {
+          position: relative;
+          bottom: -1px;
+          border-bottom: 0;
+          background: #31314e;
+          border-radius: 8px 8px 0 0;
+          padding-bottom: 16px;
         }
       }
     }
@@ -50,6 +79,7 @@
       justify-content: center;
       align-items: center;
       width: 100%;
+      background: #31314e;
 
       .weather-list-item {
         display: flex;
@@ -58,8 +88,15 @@
         justify-content: center;
         width: 100%;
         height: 300px;
-        border: 1px solid #ffffff;
-        gap: 20px;
+        border: 1px solid #cccccc;
+        border-radius: 0 0 8px 8px;
+        box-sizing: border-box;
+
+        .weather-list-item__details-item-date {
+          font-size: 14px;
+          margin: 0;
+          font-style: italic;
+        }
 
         .weather-list-item__details {
           display: flex;
@@ -67,6 +104,26 @@
           justify-content: space-evenly;
           padding: 0;
           margin: 0;
+
+          .weather-list-item__details-item {
+            list-style: none;
+            min-width: 90px;
+
+            img {
+              width: 45px;
+              height: 45px;
+            }
+
+            .weather-list-item__details-item-wind {
+              display: flex;
+              align-items: center;
+              justify-content: space-around;
+
+              p {
+                margin: 0;
+              }
+            }
+          }
         }
       }
     }

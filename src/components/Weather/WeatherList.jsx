@@ -9,33 +9,49 @@ const WeatherList = ({ city, weatherData }) => {
     setSelectedDate(Object.keys(weatherData)[0]);
   }
 
-  console.log(weatherData);
   return (
     <div className="weather-wrapper">
       <h2>{city}</h2>
       <ul className="weather-date-tabs">
         {Object.entries(weatherData).map(([date, weatherList]) => {
           const { minTemp, maxTemp } = getMinMaxTemperature(weatherList);
+          const middleTime = Number.isInteger(weatherList.length / 2)
+            ? weatherList[Math.floor(weatherList.length / 2)]
+            : weatherList[0];
 
           return (
             <li
               key={date}
               className={`weather-date-tabs__item ${
-                date === selectedDate ? 'selected' : ''
+                date === selectedDate ? 'active' : ''
               }`}
               onClick={() => setSelectedDate(date)}
             >
               {date.split(' ').map((day) => {
-                return <span key={day}>{day}</span>;
+                return (
+                  <span className="weather-date-tabs__item-date" key={day}>
+                    {day}
+                  </span>
+                );
               })}
+              <img
+                className="weather-date-tabs__item-icon"
+                title={middleTime.weather[0].description}
+                alt={middleTime.weather[0].description}
+                src={`http://openweathermap.org/img/wn/${middleTime.weather[0].icon}@2x.png`}
+              />
               <div className="weather-date-tabs__item-details">
                 <span className="weather-date-tabs__item-details-temp">
-                  <span className="weather-date-tabs__item-details-temp-label">min</span>
-                  {minTemp + '°'}
+                  <span className="weather-date-tabs__item-details-temp-label">
+                    min
+                  </span>
+                  {+minTemp?.toFixed(1) + '°'}
                 </span>
                 <span className="weather-date-tabs__item-details-temp">
-                  <span className="weather-date-tabs__item-details-temp-label">max</span>
-                  {maxTemp + '°'}
+                  <span className="weather-date-tabs__item-details-temp-label">
+                    max
+                  </span>
+                  {+maxTemp?.toFixed(1) + '°'}
                 </span>
               </div>
             </li>
@@ -46,7 +62,7 @@ const WeatherList = ({ city, weatherData }) => {
         {Object.keys(weatherData)
           .filter((date) => date === selectedDate)
           .map((date) => (
-            <WeatherItem key={date} date={date} weatherData={weatherData} />
+            <WeatherItem key={date} weatherData={weatherData[date]} />
           ))}
       </div>
     </div>

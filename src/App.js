@@ -16,7 +16,7 @@ function App() {
   const fetchWeather = useCallback((data = 'kyiv') => {
     setIsLoading(true);
     fetch(
-      `http://api.openweathermap.org/data/2.5/forecast?q=${data}&appid=${API_KEY}&units=metric&cnt=57`
+      `http://api.openweathermap.org/data/2.5/forecast?q=${data}&appid=${API_KEY}&units=metric&cnt=40`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -31,8 +31,14 @@ function App() {
           weatherByDay[formattedDate].push(forecast);
         });
 
+        const weatherWithoutLastDay = Object.fromEntries(
+          Object.keys(weatherByDay)
+            .slice(0, -1)
+            .map((key) => [key, weatherByDay[key]])
+        );
+
         setCity(data.city.name);
-        setWeatherData(weatherByDay);
+        setWeatherData(weatherWithoutLastDay);
         setSearchCityInput('');
         setIsLoading(false);
       });
